@@ -1,51 +1,27 @@
 package main
 
-import "fmt"
+import "github.com/MarkTBSS/go-interface2/monsters"
 
-type Slime struct{}
-type dragon struct{}
-
-// Parameters and Return must be the same
-type ActionHandler interface {
+type Actionner interface {
 	Attack()
 	Move()
 }
 
-func NewSlimeAction() ActionHandler {
-	return &Slime{}
+func NewSlime() Actionner {
+	return &monsters.Slime{}
 }
 
-func NewDragonAction() ActionHandler {
-	return &dragon{}
-}
-
-func (s *Slime) Attack() {
-	fmt.Println("Slime Attack")
-}
-
-func (s *Slime) Move() {
-	fmt.Println("Slime Move")
-}
-
-func (s *Slime) Hidden() {
-	fmt.Println("Slime Hidden")
-}
-
-func (d *dragon) Attack() {
-	fmt.Println("Dragon Attack")
-}
-
-func (d *dragon) Move() {
-	fmt.Println("Dragon Move")
+func NewDragon() Actionner {
+	return &monsters.Dragon{}
 }
 
 func main() {
-	slime := NewSlimeAction()
+	slime := NewSlime()
 	slime.Attack()
 	slime.Move()
 	//slime.Hidden()
 
-	dragon := NewDragonAction()
+	dragon := NewDragon()
 	dragon.Attack()
 	dragon.Move()
 }
